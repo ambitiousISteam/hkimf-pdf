@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Downloading Category A...</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HKIMF 2026 - Download Center</title>
     <style>
-        body { font-family: sans-serif; text-align: center; padding-top: 50px; background: #f4f4f4; }
-        .box { background: white; padding: 40px; border-radius: 15px; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .btn { background: #8a56a0; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 20px; }
-        p { color: #666; margin-bottom: 30px; }
+        body { font-family: sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: center; width: 90%; max-width: 400px; }
+        h1 { color: #8a56a0; margin-bottom: 10px; }
+        .btn { display: block; background: #28a745; color: white; padding: 20px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 24px; margin: 30px 0; transition: transform 0.2s; }
+        .btn:active { transform: scale(0.95); }
+        p { color: #666; line-height: 1.5; }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h2>HKIMF 2026 - Category A</h2>
-        <p>Your download will start shortly. If not, please click the button below:</p>
-        <a href="https://raw.githubusercontent.com/ambitiousISteam/hkimf-pdf/main/A.pdf" class="btn">Click Here to Download PDF</a>
+    <div class="card">
+        <h1>HKIMF 2026</h1>
+        <p>请点击下方的绿色按钮开始下载<br>Click the green button to download</p>
+        
+        <a id="downloadButton" href="#" class="btn">DOWNLOAD PDF</a>
+        
+        <p style="font-size: 14px;">下载完成后，请检查您的手机“文件”或电脑“下载”文件夹。</p>
     </div>
-    
+
     <script>
-        // 自动触发一次下载，即使失败了，用户也可以点上面的大按钮
-        window.onload = function() {
-            setTimeout(function() {
-                window.location.href = "https://raw.githubusercontent.com/ambitiousISteam/hkimf-pdf/main/A.pdf";
-            }, 1000);
-        }
+        const urlParams = new URLSearchParams(window.location.search);
+        const file = urlParams.get('file') || 'A';
+        // 构造 GitHub Raw 链接
+        const rawUrl = `https://raw.githubusercontent.com/ambitiousISteam/hkimf-pdf/main/${file}.pdf`;
+        
+        const btn = document.getElementById('downloadButton');
+        btn.href = rawUrl;
+        btn.innerHTML = `DOWNLOAD CATEGORY ${file} (PDF)`;
     </script>
 </body>
 </html>
