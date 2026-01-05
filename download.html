@@ -2,22 +2,19 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>HKIMF 预览</title>
+    <title>HKIMF 预览加载中...</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #525659; }
-        embed { width: 100vw; height: 100vh; border: none; }
+        body { background-color: #525659; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; color: white; font-family: sans-serif; }
     </style>
 </head>
 <body>
+    <div>正在为您打开预览... Loading Preview...</div>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const fileName = urlParams.get('file') || 'A';
-        
-        // 这里的路径必须指向你的 GitHub 内容域名
-        const pdfPath = `https://raw.githubusercontent.com/ambitiousISteam/hkimf-pdf/main/${fileName}.pdf`;
-        
-        // 使用 <embed> 标签通常比 <iframe> 在显示 PDF 时更稳
-        document.write(`<embed src="${pdfPath}" type="application/pdf">`);
+        const file = urlParams.get('file') || 'A';
+        // 关键：直接让窗口跳转到文件地址，不给 GitHub 拦截的机会
+        const pdfUrl = `https://raw.githubusercontent.com/ambitiousISteam/hkimf-pdf/main/${file}.pdf`;
+        window.location.replace(pdfUrl);
     </script>
 </body>
 </html>
