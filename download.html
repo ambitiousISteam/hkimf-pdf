@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Downloading Category A...</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: sans-serif; text-align: center; padding-top: 50px; background: #f4f4f4; }
+        .box { background: white; padding: 40px; border-radius: 15px; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .btn { background: #8a56a0; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 20px; }
+        p { color: #666; margin-bottom: 30px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>HKIMF 2026 - Category A</h2>
+        <p>Your download will start shortly. If not, please click the button below:</p>
+        <a href="https://raw.githubusercontent.com/ambitiousISteam/hkimf-pdf/main/A.pdf" class="btn">Click Here to Download PDF</a>
+    </div>
+    
+    <script>
+        // 自动触发一次下载，即使失败了，用户也可以点上面的大按钮
+        window.onload = function() {
+            setTimeout(function() {
+                window.location.href = "https://raw.githubusercontent.com/ambitiousISteam/hkimf-pdf/main/A.pdf";
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
