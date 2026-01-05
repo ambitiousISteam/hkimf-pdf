@@ -2,24 +2,22 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>HKIMF 预览</title>
     <style>
-        body, html { 
-            margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; 
-        }
-        /* 这个框架会强制 PDF 撑满屏幕，盖住所有 GitHub 的东西 */
-        iframe { 
-            border: none; width: 100vw; height: 100vh; 
-        }
+        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #525659; }
+        embed { width: 100vw; height: 100vh; border: none; }
     </style>
 </head>
 <body>
-   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const file = urlParams.get('file') || 'A';
-    // 这种写法能让浏览器用最高优先级打开纯净 PDF
-    window.location.replace(`https://raw.githubusercontent.com/ambitiousISteam/hkimf-pdf/main/${file}.pdf`);
-</script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const fileName = urlParams.get('file') || 'A';
+        
+        // 这里的路径必须指向你的 GitHub 内容域名
+        const pdfPath = `https://raw.githubusercontent.com/ambitiousISteam/hkimf-pdf/main/${fileName}.pdf`;
+        
+        // 使用 <embed> 标签通常比 <iframe> 在显示 PDF 时更稳
+        document.write(`<embed src="${pdfPath}" type="application/pdf">`);
+    </script>
 </body>
 </html>
