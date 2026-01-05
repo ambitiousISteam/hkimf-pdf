@@ -15,14 +15,11 @@
     </style>
 </head>
 <body>
-    <script>
-        // 自动获取网址里的 ?file= 参数
-        const urlParams = new URLSearchParams(window.location.search);
-        const file = urlParams.get('file') || 'A';
-        // 关键：这里使用 raw 链接，iframe 会直接渲染纯 PDF
-        const pdfUrl = `https://raw.githubusercontent.com/ambitiousISteam/hkimf-pdf/main/${file}.pdf`;
-        
-        document.write(`<iframe src="${pdfUrl}"></iframe>`);
-    </script>
+   <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const file = urlParams.get('file') || 'A';
+    // 这种写法能让浏览器用最高优先级打开纯净 PDF
+    window.location.replace(`https://raw.githubusercontent.com/ambitiousISteam/hkimf-pdf/main/${file}.pdf`);
+</script>
 </body>
 </html>
