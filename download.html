@@ -1,37 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HKIMF 2026 - Download Center</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HKIMF 预览</title>
     <style>
-        body { font-family: sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: center; width: 90%; max-width: 400px; }
-        h1 { color: #8a56a0; margin-bottom: 10px; }
-        .btn { display: block; background: #28a745; color: white; padding: 20px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 24px; margin: 30px 0; transition: transform 0.2s; }
-        .btn:active { transform: scale(0.95); }
-        p { color: #666; line-height: 1.5; }
+        body, html { 
+            margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; 
+        }
+        /* 这个框架会强制 PDF 撑满屏幕，盖住所有 GitHub 的东西 */
+        iframe { 
+            border: none; width: 100vw; height: 100vh; 
+        }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>HKIMF 2026</h1>
-        <p>请点击下方的绿色按钮开始下载<br>Click the green button to download</p>
-        
-        <a id="downloadButton" href="#" class="btn">DOWNLOAD PDF</a>
-        
-        <p style="font-size: 14px;">下载完成后，请检查您的手机“文件”或电脑“下载”文件夹。</p>
-    </div>
-
     <script>
+        // 自动获取网址里的 ?file= 参数
         const urlParams = new URLSearchParams(window.location.search);
         const file = urlParams.get('file') || 'A';
-        // 构造 GitHub Raw 链接
-        const rawUrl = `https://raw.githubusercontent.com/ambitiousISteam/hkimf-pdf/main/${file}.pdf`;
+        // 关键：这里使用 raw 链接，iframe 会直接渲染纯 PDF
+        const pdfUrl = `https://raw.githubusercontent.com/ambitiousISteam/hkimf-pdf/main/${file}.pdf`;
         
-        const btn = document.getElementById('downloadButton');
-        btn.href = rawUrl;
-        btn.innerHTML = `DOWNLOAD CATEGORY ${file} (PDF)`;
+        document.write(`<iframe src="${pdfUrl}"></iframe>`);
     </script>
 </body>
 </html>
